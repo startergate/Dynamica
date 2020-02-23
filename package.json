@@ -2,7 +2,7 @@
   "name": "dynamica",
   "version": "1.0.0",
   "main": "public/electron.js",
-  "license": "MIT",
+  "license": "CC BY 4.0",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
