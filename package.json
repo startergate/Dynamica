@@ -24,8 +24,7 @@
     "react-build": "react-scripts build",
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
-    "electron-build": "electron-builder",
-    "release": "yarn react-build && electron-builder --publish=always",
+    "electron-build": "electron-packager ./* Dynamica --platform=win32 --arch=ia32",
     "build": "yarn react-build && yarn electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
@@ -48,6 +47,7 @@
     "concurrently": "^5.1.0",
     "electron": "^8.0.1",
     "electron-builder": "^22.3.2",
+    "electron-packager": "14.2.1",
     "wait-on": "^4.0.0"
   }
 }

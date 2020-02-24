@@ -226,3 +226,5 @@ sketch
 .env.development.local
 .env.test.local
 .env.production.local
+
+Dynamica-win32-ia32/
