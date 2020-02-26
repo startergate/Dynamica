@@ -1,53 +1,21 @@
 {
   "name": "dynamica",
   "version": "1.0.0",
-  "main": "public/electron.js",
+  "main": "build/main.js",
   "license": "CC-BY-4.0",
   "private": false,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "cross-env": "^7.0.0",
-    "electron-is-dev": "^1.1.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.4.0",
-    "typescript": "~3.7.2"
+    "cross-env": "^7.0.0"
   },
   "scripts": {
-    "react-start": "react-scripts start",
-    "react-build": "react-scripts build",
-    "react-test": "react-scripts test",
-    "react-eject": "react-scripts eject",
-    "electron-build": "electron-packager ./ Dynamica --platform=win32 --arch=ia32 --overwrite",
-    "build": "yarn react-build && yarn electron-build",
-    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "build": "electron-packager ./ Dynamica --platform=win32 --arch=ia32 --overwrite",
+    "start": "electron ."
   },
   "devDependencies": {
-    "concurrently": "^5.1.0",
     "electron": "^8.0.1",
     "electron-builder": "^22.3.2",
     "electron-packager": "14.2.1",
-    "wait-on": "^4.0.0"
+    "typescript": "~3.7.2"
   }
 }
