@@ -24,7 +24,7 @@
     "react-build": "react-scripts build",
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
-    "electron-build": "electron-packager ./* Dynamica --platform=win32 --arch=ia32",
+    "electron-build": "electron-packager ./ Dynamica --platform=win32 --arch=ia32 --overwrite",
     "build": "yarn react-build && yarn electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
