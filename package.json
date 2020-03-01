@@ -9,8 +9,8 @@
     "cross-env": "^7.0.0"
   },
   "scripts": {
-    "build": "electron-packager ./ Dynamica --platform=win32 --arch=ia32 --overwrite",
-    "start": "electron ."
+    "build": "tsc && electron-packager ./ Dynamica --platform=win32 --arch=ia32 --overwrite",
+    "start": "tsc && electron ."
   },
   "devDependencies": {
     "electron": "^8.0.1",
