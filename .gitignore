@@ -194,19 +194,6 @@ dist/
 tmp/
 temp/
 
-### react ###
-.DS_*
-**/*.backup.*
-**/*.back.*
-
-node_modules
-
-*.sublime*
-
-psd
-thumb
-sketch
-
 # End of https://www.gitignore.io/api/node,react,jetbrains+all# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
