@@ -1,12 +1,13 @@
 // Modules to control application life and create native browser window
-import {app, BrowserWindow} from 'electron';
+import {app, BrowserWindow, screen} from 'electron';
 import * as path from 'path';
 
 function createWindow () {
   // Create the browser window.
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: width,
+    height: height,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
