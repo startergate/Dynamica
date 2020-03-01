@@ -9,13 +9,17 @@
     "cross-env": "^7.0.0"
   },
   "scripts": {
-    "build": "tsc && electron-packager ./ Dynamica --platform=win32 --arch=ia32 --overwrite",
-    "start": "tsc && electron ."
+    "build": "gulp && electron-packager ./ Dynamica --platform=win32 --arch=ia32 --overwrite",
+    "start": "gulp && electron ."
   },
   "devDependencies": {
     "electron": "^8.0.1",
     "electron-builder": "^22.3.2",
     "electron-packager": "14.2.1",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.2.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "typescript": "~3.7.2"
   }
 }
