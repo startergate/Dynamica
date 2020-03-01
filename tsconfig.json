@@ -3,7 +3,7 @@
     "module": "commonjs",
     "target": "es2020",
     "noImplicitAny": true,
-    "outDir": "./dist",
+    "outDir": "./build",
     "sourceMap": true,
     "typeRoots": ["/node_modules/@types", "/@types"]
   },
