@@ -4,7 +4,7 @@ import * as path from 'path';
 
 const createWindow = () => {
   // Create the browser window.
-  const { width, height } = screen.getPrimaryDisplay().workAreaSize
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
   const mainWindow = new BrowserWindow({
     width: width,
     height: height,
