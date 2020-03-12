@@ -1,11 +1,17 @@
 // Modules to control application life and create native browser window
-import {app, BrowserWindow, screen} from 'electron';
+import { app, BrowserWindow, screen, ipcMain } from 'electron';
 import * as path from 'path';
+
+let window: BrowserWindow;
+
+const imageSender = () => {
+  if (false) window.webContents.send('change-image', 'file-path');  // TODO: GET FILEPATH!
+};
 
 const createWindow = () => {
   // Create the browser window.
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
-  const mainWindow = new BrowserWindow({
+  window = new BrowserWindow({
     width: width,
     height: height,
     webPreferences: {
@@ -14,14 +20,20 @@ const createWindow = () => {
   });
 
   // set full screen
-  mainWindow.setFullScreen(true);
-  mainWindow.setMenu(null);
+  window.setFullScreen(true);
+  window.setMenu(null);
 
   // and load the index.html of the app.
-  mainWindow.loadFile('build/index.html');
+  window.loadFile('build/index.html');
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  // window.webContents.openDevTools();
+
+  // setup initializer
+  window.webContents.on('did-finish-load', imageSender);
+
+  // set interval to update background
+  setInterval(imageSender, 60000);
 };
 
 // This method will be called when Electron has finished
@@ -41,6 +53,3 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

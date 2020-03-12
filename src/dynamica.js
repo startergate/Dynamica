@@ -1,13 +1,9 @@
-setInterval(async _ => {
-  document.getElementById('current').classList.add('hide');
+import { ipcRenderer } from 'electron';
 
-  await setTimeout(_ => {
-
-  })
-}, 1000);
+const current = document.getElementById('current');
+const next = document.getElementById('next');
 
 const whichTransitionEvent = _ => {
-  const el = document.getElementById('current');
   const transitions = {
     'transition':'transitionend',
     'OTransition':'oTransitionEnd',
@@ -16,12 +12,18 @@ const whichTransitionEvent = _ => {
   };
 
   for (let t in transitions){
-    if(el.style[t] !== undefined){
+    if(current.style[t] !== undefined){
       return transitions[t];
     }
   }
 };
 
-element.addEventListener(whichTransitionEvent(), _ => {
+current.addEventListener(whichTransitionEvent(), _ => {
+  current.setAttribute('src', next.getAttribute('src'));
+  current.classList.remove('hide');
+});
 
+ipcRenderer.on('change-image', (event, path) => {
+  next.setAttribute('src', path);
+  current.classList.add('hide');
 });
