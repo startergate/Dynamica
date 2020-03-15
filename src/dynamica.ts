@@ -13,3 +13,4 @@ ipcRenderer.on('change-image', (event: IpcRendererEvent, path: string) => {
   next.setAttribute('src', path);
   current.classList.add('hide');
 });
+

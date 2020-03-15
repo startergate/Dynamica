@@ -2,6 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es2020",
+    "resolveJsonModule": true,
     "noImplicitAny": true,
     "outDir": "./build",
     "sourceMap": true,
