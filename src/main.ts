@@ -14,17 +14,19 @@ const initialize = () : any => {
   }
 };
 
-let setting: JSON = initialize();
+let setting: any = initialize();
 let window: BrowserWindow;
 
 const getImage = () => {
+  const now: Date = new Date;
   for (let i in setting) {
-    
+    if (setting.hasOwnProperty(i))
+      if (parseInt(i) <= now.getHours() * 100 + now.getMinutes()) return (i as any).image;
   }
 };
 
 const imageSender = () => {
-  if (false) window.webContents.send('change-image', getImage());  // TODO: GET FILEPATH!
+  window.webContents.send('change-image', getImage());  // TODO: GET FILEPATH!
 };
 
 const createWindow = () => {
