@@ -1,32 +1,15 @@
-// Modules to control application life and create native browser window
-import { app, BrowserWindow, screen, ipcMain } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 
-const settingdir = path.join(require('os').homedir(), 'Dynamica', 'setting.json');
+// Modules to control application life and create native browser window
+import { app, BrowserWindow, screen } from 'electron';
 
-const initialize = () : any => {
-  try {
-    return JSON.parse(fs.readFileSync(settingdir).toString());
-  } catch (e) {
-    fs.writeFileSync(settingdir, '{}');
-    return initialize();
-  }
-};
+import { getImage } from "./utils/image";
 
-let setting: any = initialize();
 let window: BrowserWindow;
 
-const getImage = () => {
-  const now: Date = new Date;
-  for (let i in setting) {
-    if (setting.hasOwnProperty(i))
-      if (parseInt(i) <= now.getHours() * 100 + now.getMinutes()) return (i as any).image;
-  }
-};
-
 const imageSender = () => {
-  window.webContents.send('change-image', getImage());  // TODO: GET FILEPATH!
+  window.webContents.send('change-image', getImage());
 };
 
 const createWindow = () => {
