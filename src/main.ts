@@ -2,14 +2,18 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 // Modules to control application life and create native browser window
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, ipcMain, IpcMainEvent, screen } from 'electron';
 
-import { getImage } from "./utils/image";
+import { getImage, reinitialize } from "./utils/image";
 
 let window: BrowserWindow;
 
 const imageSender = () => {
   window.webContents.send('change-image', getImage());
+};
+
+const settingUpdater = (event: IpcMainEvent, args: any[]) => {
+  reinitialize();
 };
 
 const createWindow = () => {
@@ -35,6 +39,9 @@ const createWindow = () => {
 
   // setup initializer
   window.webContents.on('did-finish-load', imageSender);
+
+  // set image setting
+  ipcMain.on('update-setting', settingUpdater);
 
   // set interval to update background
   setInterval(imageSender, 60000);

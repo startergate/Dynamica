@@ -10,3 +10,7 @@ export const getImage = () => {
       if (parseInt(time) <= now.getHours() * 100 + now.getMinutes()) return setting.get(time).image;
   }
 };
+
+export const reinitialize = () => {
+  setting = initialize();
+};
