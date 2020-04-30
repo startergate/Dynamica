@@ -12,7 +12,9 @@ const imageSender = () => {
   window.webContents.send('change-image', getImage());
 };
 
-const settingUpdater = (event: IpcMainEvent, args: any[]) => {
+const settingUpdater = (event: IpcMainEvent, args: any) => {
+  const setting = JSON.parse(args);
+  fs.writeFileSync('TODO: Setting link', setting);
   reinitialize();
 };
 
