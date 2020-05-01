@@ -1,4 +1,4 @@
-import { Image } from "./image";
+import { Image } from './image';
 
 type Setting = Map<string, Image>;
 

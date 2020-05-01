@@ -1,5 +1,5 @@
-import {Setting} from "../models/setting";
-import {initialize} from "./initialize";
+import { Setting } from '../models/setting';
+import { initialize } from './initialize';
 
 let setting: Setting = initialize();
 

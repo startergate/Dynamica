@@ -1,7 +1,7 @@
-import * as path from "path";
-import * as fs from "fs";
-import {Image} from "../models/image";
+import * as fs from 'fs';
+import * as path from 'path';
 
+import { Image } from '../models/image';
 
 const settingDir = path.join(require('os').homedir(), 'Documents', 'Dynamica');
 export const settingFile = path.join(settingDir, 'setting.json');
