@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import { app, BrowserWindow, ipcMain, IpcMainEvent, screen } from 'electron';
 
 import { getImage, reinitialize } from "./utils/image";
+import { settingFile } from "./utils/initialize";
 
 let window: BrowserWindow;
 
@@ -13,8 +14,9 @@ const imageSender = () => {
 };
 
 const settingUpdater = (event: IpcMainEvent, args: any) => {
-  const setting = JSON.parse(args);
-  fs.writeFileSync('TODO: Setting link', setting);
+  //const setting = JSON.parse(args);
+  //fs.writeFileSync(settingFile + 'TODO: Setting link', setting);
+  console.log(args);
   reinitialize();
 };
 
@@ -25,7 +27,8 @@ const createWindow = () => {
     width: width,
     height: height,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true
     }
   });
 
@@ -37,7 +40,7 @@ const createWindow = () => {
   window.loadFile('build/index.html');
 
   // Open the DevTools.
-  // window.webContents.openDevTools();
+  window.webContents.openDevTools();
 
   // setup initializer
   window.webContents.on('did-finish-load', imageSender);

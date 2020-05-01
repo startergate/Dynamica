@@ -14,3 +14,4 @@ ipcRenderer.on('change-image', (event: IpcRendererEvent, path: string) => {
   current.classList.add('hide');
 });
 
+ipcRenderer.send('update-setting', 'hello world');
