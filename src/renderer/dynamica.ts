@@ -9,9 +9,8 @@ current.addEventListener('transitionend', () => {
   current.classList.remove('hide');
 });
 
-ipcRenderer.on('change-image', (event: IpcRendererEvent, path: string) => {
+ipcRenderer.on('change-image', (event: IpcRendererEvent, path: any) => {
   next.setAttribute('src', path);
   current.classList.add('hide');
 });
 
-ipcRenderer.send('update-setting', 'hello world');
