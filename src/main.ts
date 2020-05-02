@@ -11,7 +11,8 @@ let window: BrowserWindow;
 let option: BrowserWindow;
 
 const imageSender = () => {
-  window.webContents.send('change-image', getImage());
+  const path = getImage();
+  if (path) window.webContents.send('change-image', path);
 };
 
 const settingUpdater = (event: IpcMainEvent, args: any) => {
@@ -21,7 +22,7 @@ const settingUpdater = (event: IpcMainEvent, args: any) => {
     console.log(args);
     reinitialize();
   } catch (e) {
-    event.returnValue = new Error('Invaild Input Value')
+    event.returnValue = new Error('Invalid Input Value');
   }
 };
 
@@ -42,13 +43,28 @@ const createWindow = () => {
   window.setMenu(null);
 
   // and load the index.html of the app.
-  window.loadFile('./static/index.html');
+  window.loadFile('./build/static/index.html');
 
   // Open the DevTools.
   window.webContents.openDevTools();
 
   // setup initializer
-  window.webContents.on('did-finish-load', imageSender);
+  window.webContents.on('did-finish-load', () => {
+    window.webContents.on('new-window', (event, url, frameName, disposition, options) => {
+      if (frameName === 'option') {
+        event.preventDefault();
+        Object.assign(options, {
+          modal: true,
+          parent: window,
+          width: 100,
+          height: 100
+        });
+        option = new BrowserWindow(options)
+        option.loadFile('./build/static/option.html');
+      }
+    });
+    imageSender();
+  });
 
   // set image setting
   ipcMain.on('update-setting', settingUpdater);
@@ -73,18 +89,4 @@ app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) createWindow();
-});
-
-window.webContents.on('new-window', (event, url, frameName, disposition, options) => {
-  if (frameName === 'option') {
-    event.preventDefault();
-    Object.assign(options, {
-      modal: true,
-      parent: window,
-      width: 100,
-      height: 100
-    });
-    option = new BrowserWindow(options)
-    option.loadFile('./static/option.html')
-  }
 });
