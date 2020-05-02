@@ -69,3 +69,17 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
+
+window.webContents.on('new-window', ((event, url, frameName, disposition, options) => {
+  if (frameName === 'option') {
+    event.preventDefault();
+    Object.assign(options, {
+      modal: true,
+      parent: window,
+      width: 100,
+      height: 100
+    });
+    option = new BrowserWindow(options)
+    option.loadFile('./static/option.html')
+  }
+})
