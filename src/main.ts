@@ -8,6 +8,7 @@ import { getImage, reinitialize } from "./utils/image";
 import { settingFile } from "./utils/initialize";
 
 let window: BrowserWindow;
+let option: BrowserWindow;
 
 const imageSender = () => {
   window.webContents.send('change-image', getImage());
