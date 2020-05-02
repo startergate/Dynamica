@@ -3,6 +3,7 @@ import IpcRendererEvent = Electron.IpcRendererEvent;
 
 const current = document.getElementById('current');
 const next = document.getElementById('next');
+const settingButton = document.getElementById('settingTab');
 
 current.addEventListener('transitionend', () => {
   current.setAttribute('src', next.getAttribute('src'));
@@ -14,3 +15,6 @@ ipcRenderer.on('change-image', (event: IpcRendererEvent, path: any) => {
   current.classList.add('hide');
 });
 
+settingButton.addEventListener('click', () => {
+  window.open('', 'option');
+});

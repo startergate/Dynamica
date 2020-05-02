@@ -12,3 +12,14 @@
     z-index: 1;
 }
 
+.optionArea {
+    transition: right 0.5s;
+    top: 30px;
+    right: -10px;
+    position: fixed;
+    z-index: 2;
+}
+
+.optionArea:hover {
+    right: 0;
+}
