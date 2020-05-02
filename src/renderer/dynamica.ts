@@ -3,6 +3,7 @@ import IpcRendererEvent = Electron.IpcRendererEvent;
 
 const current = document.getElementById('current');
 const next = document.getElementById('next');
+const skipButton = document.getElementById('skipThisImage');
 const settingButton = document.getElementById('settingTab');
 
 current.addEventListener('transitionend', () => {
@@ -13,6 +14,10 @@ current.addEventListener('transitionend', () => {
 ipcRenderer.on('change-image', (event: IpcRendererEvent, path: any) => {
   next.setAttribute('src', path);
   current.classList.add('hide');
+});
+
+skipButton.addEventListener('click', () => {
+  ipcRenderer.send('change-image', 'skip')
 });
 
 settingButton.addEventListener('click', () => {
