@@ -14,10 +14,14 @@ const imageSender = () => {
 };
 
 const settingUpdater = (event: IpcMainEvent, args: any) => {
-  //const setting = JSON.parse(args);
-  //fs.writeFileSync(settingFile + 'TODO: Setting link', setting);
-  console.log(args);
-  reinitialize();
+  try {
+    const setting = JSON.parse(args);
+    fs.writeFileSync(settingFile + 'TODO: Setting link', setting);
+    console.log(args);
+    reinitialize();
+  } catch (e) {
+    event.returnValue = new Error('Invaild Input Value')
+  }
 };
 
 const createWindow = () => {
@@ -37,7 +41,7 @@ const createWindow = () => {
   window.setMenu(null);
 
   // and load the index.html of the app.
-  window.loadFile('build/index.html');
+  window.loadFile('./static/index.html');
 
   // Open the DevTools.
   window.webContents.openDevTools();
@@ -49,7 +53,7 @@ const createWindow = () => {
   ipcMain.on('update-setting', settingUpdater);
 
   // set interval to update background
-  setInterval(imageSender, 60000);
+  // setInterval(imageSender, 60000);
 };
 
 // This method will be called when Electron has finished
