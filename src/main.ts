@@ -75,7 +75,7 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
 
-window.webContents.on('new-window', ((event, url, frameName, disposition, options) => {
+window.webContents.on('new-window', (event, url, frameName, disposition, options) => {
   if (frameName === 'option') {
     event.preventDefault();
     Object.assign(options, {
@@ -87,4 +87,4 @@ window.webContents.on('new-window', ((event, url, frameName, disposition, option
     option = new BrowserWindow(options)
     option.loadFile('./static/option.html')
   }
-})
+});
