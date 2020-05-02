@@ -3,3 +3,12 @@
     width: 100vw;
     position: fixed;
 }
+
+#current {
+    z-index: 0;
+}
+
+#next {
+    z-index: 1;
+}
+
