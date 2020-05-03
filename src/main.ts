@@ -26,7 +26,7 @@ const settingUpdater = (event: IpcMainEvent, args: any) => {
   }
 };
 
-const createWindow = () => {
+const createWindow = async () => {
   // Create the browser window.
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
   window = new BrowserWindow({
@@ -43,14 +43,14 @@ const createWindow = () => {
   window.setMenu(null);
 
   // and load the index.html of the app.
-  window.loadFile('./build/static/index.html');
+  await window.loadFile('./build/static/index.html');
 
   // Open the DevTools.
   window.webContents.openDevTools();
 
   // setup initializer
   window.webContents.on('did-finish-load', () => {
-    window.webContents.on('new-window', (event, url, frameName, disposition, options) => {
+    window.webContents.on('new-window', async (event, url, frameName, disposition, options) => {
       if (frameName === 'option') {
         event.preventDefault();
         Object.assign(options, {
@@ -60,7 +60,7 @@ const createWindow = () => {
           height: 100
         });
         option = new BrowserWindow(options)
-        option.loadFile('./build/static/option.html');
+        await option.loadFile('./build/static/option.html');
       }
     });
     imageSender();
