@@ -70,7 +70,7 @@ const createWindow = async () => {
   ipcMain.on('update-setting', settingUpdater);
 
   // set interval to update background
-  // setInterval(imageSender, 60000);
+  setInterval(imageSender, 60000);
 };
 
 // This method will be called when Electron has finished
