@@ -1,11 +1,15 @@
 import { ipcRenderer } from 'electron';
+import Event = Electron.Event;
 
 const submitBtn = document.getElementById('submit');
 const addBtn = document.getElementById('add');
+const template = document.getElementsByClassName('schedule')[0]
 
-const removeBtnCallback = (event: MouseEvent) => {
-  console.log(event.target);
-};
+const removeEventListener = (event: Event) => {
+  event.preventDefault();
+  const target = <Element> event.currentTarget
+  document.getElementById('originValue').removeChild(target.parentElement.parentElement);
+}
 
 submitBtn.addEventListener('click', (event) => {
   event.preventDefault();
@@ -20,7 +24,8 @@ submitBtn.addEventListener('click', (event) => {
 addBtn.addEventListener('click', (event) => {
   event.preventDefault();
   let target = document.getElementById('originValue');
-  const reference = target.children[target.childElementCount - 1];
-  const copied = reference.cloneNode(true);
+  const n = template.cloneNode(true);
+  let copied: Element = <Element> n;
+  copied.children[2].children[0].addEventListener('click', removeEventListener);
   target.appendChild(copied);
 });
