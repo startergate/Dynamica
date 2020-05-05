@@ -7,6 +7,21 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'" />
 </head>
 <body>
+    <div style="display: none">
+        <table>
+            <tr class="scheduleTemplate">
+                <td>
+                    <input type="time" class="time">
+                </td>
+                <td>
+                    <input type="text" class="path">
+                </td>
+                <td>
+                    <button class="minus">-</button>
+                </td>
+            </tr>
+        </table>
+    </div>
     <table id="worker">
         <thead>
             <tr>
@@ -15,37 +30,37 @@
                 <td></td>
             </tr>
         </thead>
+        <tbody id="originValue">
+            <tr class="schedule">
+                <td>
+                    <input type="time" class="time">
+                </td>
+                <td>
+                    <input type="text" class="path">
+                </td>
+                <td>
+                    <button class="minus">-</button>
+                </td>
+            </tr>
+            <tr class="schedule">
+                <td>
+                    <input type="time" class="time">
+                </td>
+                <td>
+                <input type="text" class="path">
+                </td>
+                <td>
+                    <button class="minus">-</button>
+                </td>
+            </tr>
+        </tbody>
         <tbody>
-            <div id="originValue">
-                <tr class="schedule">
-                    <td>
-                        <input type="time" class="time">
-                    </td>
-                    <td>
-                        <input type="text" class="path">
-                    </td>
-                    <td>
-                        <button class="minus">-</button>
-                    </td>
-                </tr>
-                <tr class="schedule">
-                    <td>
-                        <input type="time" class="time">
-                    </td>
-                    <td>
-                        <input type="text" class="path">
-                    </td>
-                    <td>
-                        <button class="minus">-</button>
-                    </td>
-                </tr>
-            </div>
             <tr>
-                <td colspan="2"><button class="addBtn" id="add"><span class="plus">+</span> Add</button></td>
+                <td colspan="2"><button class="btn addBtn" id="add"><span class="plus">+</span> Add</button></td>
             </tr>
         </tbody>
     </table>
-    <button id="submit">완료</button>
+    <button class="btn submitBtn" id="submit">완료</button>
     <script>
         require('../renderer/option');
     </script>
