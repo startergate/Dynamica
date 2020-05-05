@@ -50,21 +50,22 @@ const createWindow = async () => {
 
   // setup initializer
   window.webContents.on('did-finish-load', () => {
-    window.webContents.on('new-window', async (event, url, frameName, disposition, options) => {
-      if (frameName === 'option') {
-        event.preventDefault();
-        Object.assign(options, {
-          modal: true,
-          parent: window,
-          width: 100,
-          height: 100
-        });
-        option = new BrowserWindow(options)
-        await option.loadFile('./build/static/option.html');
-      }
-    });
     imageSender();
   });
+
+  window.webContents.on('new-window', async (event, url, frameName, disposition, options) => {
+    console.log("done");
+    if (frameName === 'option') {
+      event.preventDefault();
+      Object.assign(options, {
+        modal: true,
+        parent: window
+      });
+      option = new BrowserWindow(options)
+      await option.loadFile('./build/static/option.html');
+    }
+  });
+
 
   // set image setting
   ipcMain.on('update-setting', settingUpdater);
@@ -73,7 +74,4 @@ const createWindow = async () => {
   setInterval(imageSender, 60000);
 };
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
