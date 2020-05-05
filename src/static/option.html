@@ -3,8 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Dynamica Setting</title>
+    <link rel="stylesheet" href="option.css" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'" />
 </head>
 <body>
+    <table id="worker">
+        <thead>
+            <tr>
+                <td>Time</td>
+                <td>Path</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <div id="originValue">
+                <tr class="schedule">
+                    <td>
+                        <input type="time" class="time">
+                    </td>
+                    <td>
+                        <input type="text" class="path">
+                    </td>
+                    <td>
+                        <button class="minus">-</button>
+                    </td>
+                </tr>
+                <tr class="schedule">
+                    <td>
+                        <input type="time" class="time">
+                    </td>
+                    <td>
+                        <input type="text" class="path">
+                    </td>
+                    <td>
+                        <button class="minus">-</button>
+                    </td>
+                </tr>
+            </div>
+            <tr>
+                <td colspan="2"><button class="addBtn" id="add"><span class="plus">+</span> Add</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="submit">완료</button>
     <script>
         require('../renderer/option');
     </script>
