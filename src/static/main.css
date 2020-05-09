@@ -3,7 +3,9 @@ body {
 }
 
 .background {
-    height: auto;
+    background-repeat:no-repeat;
+    background-position-y: top;
+    height: 100vh;
     width: 100vw;
     position: fixed;
     transition: background-image 0.5s ease-in-out;

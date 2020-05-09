@@ -6,7 +6,7 @@ const skipButton = document.getElementById('skipThisImage');
 const settingButton = document.getElementById('settingTab');
 
 ipcRenderer.on('change-image', (event: IpcRendererEvent, path: any) => {
-  current.style.backgroundImage = path;
+  current.setAttribute('style', `background-image: url('${path}')`)
 });
 
 skipButton.addEventListener('click', () => {
