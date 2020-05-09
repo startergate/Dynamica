@@ -10,6 +10,8 @@ import { settingFile } from "./utils/initialize";
 let window: BrowserWindow;
 let option: BrowserWindow;
 
+app.allowRendererProcessReuse = false;
+
 const imageSender = () => {
   const path = getImage();
   if (path) window.webContents.send('change-image', path);
