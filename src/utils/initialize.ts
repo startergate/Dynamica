@@ -12,7 +12,9 @@ export const initialize = () : Map<string, Image> => {
     const save = fs.readFileSync(settingFile).toString();
     return JSON.parse(save);
   } catch (e) {
-    fs.mkdirSync(settingDir)
+    if (!fs.existsSync(settingDir)){
+      fs.mkdirSync(settingDir);
+    }
     fs.writeFileSync(settingFile, '{}', { flag: 'w+' });
     return initialize();
   }
