@@ -3,22 +3,14 @@ body {
 }
 
 .background {
-    height: 100vh;
+    height: auto;
     width: 100vw;
     position: fixed;
-}
-
-.hide {
-    transition: opacity 0.5s;
-    opacity: 0;
+    transition: background-image 0.5s ease-in-out;
 }
 
 #current {
     z-index: 1;
-}
-
-#next {
-    z-index: 0;
 }
 
 .optionArea {
