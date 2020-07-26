@@ -1,2 +1,2 @@
 # Dynamica
-Dynamica is Web wallpaper for Wallpaper Engine inspired by macOS
+Dynamica is web wallpaper for Wallpaper Engine inspired by macOS
